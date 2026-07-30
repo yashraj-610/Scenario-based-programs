@@ -1,0 +1,70 @@
+class Vehicle:
+    def __init__(self, vehicle_no, brand, price, category):
+        self.vehicle_no = vehicle_no
+        self.brand = brand
+        self.price = price
+        self.category = category
+
+    def display(self):
+        print("Vehicle Number :", self.vehicle_no)
+        print("Brand          :", self.brand)
+        print("Price          :", self.price)
+        print("Category       :", self.category)
+        print("-" * 30)
+
+
+class Showroom:
+    def __init__(self):
+        self.vehicles = []
+
+    def add_vehicle(self):
+        vehicle_no = input("Enter Vehicle Number: ")
+        brand = input("Enter Brand: ")
+        price = float(input("Enter Price: "))
+
+        print("Select Category:")
+        print("1. Luxury")
+        print("2. Economy")
+        choice = input("Enter choice (1/2): ")
+
+        if choice == "1":
+            category = "Luxury"
+        elif choice == "2":
+            category = "Economy"
+        else:
+            category = "Economy"
+
+        vehicle = Vehicle(vehicle_no, brand, price, category)
+        self.vehicles.append(vehicle)
+        print("Vehicle added successfully!\n")
+
+    def display_vehicles(self):
+        if len(self.vehicles) == 0:
+            print("No vehicle records found.")
+        else:
+            print("\nVehicle Records")
+            print("=" * 30)
+            for vehicle in self.vehicles:
+                vehicle.display()
+
+
+# Main Program
+showroom = Showroom()
+
+while True:
+    print("\nVehicle Showroom Management System")
+    print("1. Add Vehicle")
+    print("2. Display All Vehicles")
+    print("3. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        showroom.add_vehicle()
+    elif choice == "2":
+        showroom.display_vehicles()
+    elif choice == "3":
+        print("Exiting Program...")
+        break
+    else:
+        print("Invalid choice! Please try again.")
