@@ -1,0 +1,38 @@
+import csv
+
+# Read patient records from patients.csv
+with open("patients.csv", "r", newline="") as file:
+    reader = csv.DictReader(file)
+    patients = list(reader)
+
+# Display all patient details
+print("----- All Patient Details -----")
+
+for patient in patients:
+    print("Patient ID :", patient["Patient ID"])
+    print("Name       :", patient["Name"])
+    print("Age        :", patient["Age"])
+    print("Gender     :", patient["Gender"])
+    print("Disease    :", patient["Disease"])
+    print("Contact    :", patient["Contact"])
+    print("-" * 35)
+
+# Search for a patient using Patient ID
+search_id = input("Enter Patient ID to search: ")
+
+found = False
+
+for patient in patients:
+    if patient["Patient ID"] == search_id:
+        print("\n----- Patient Found -----")
+        print("Patient ID :", patient["Patient ID"])
+        print("Name       :", patient["Name"])
+        print("Age        :", patient["Age"])
+        print("Gender     :", patient["Gender"])
+        print("Disease    :", patient["Disease"])
+        print("Contact    :", patient["Contact"])
+        found = True
+        break
+
+if not found:
+    print("Patient with ID", search_id, "not found.")
